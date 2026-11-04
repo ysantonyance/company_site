@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Home — Karina's Empire{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+    <div class="hero-badge">7th IT Empire Official Portal</div>
+    <h1>Добро пожаловать</h1>
+    <p class="hero-subtitle">
+        Здесь рождаются миллиардные идеи. Пока вы сидите и ничего не делаете, то я делаю тоже самое, только лучше
+    </p>
+    
+    <div class="hero-actions">
+        <a href="{% url 'about' %}" class="btn-primary">Понять, кто тут босс</a>
+        <a href="{% url 'contacts' %}" class="btn-secondary">Подарить €4000 на мороженое</a>
+    </div>
+</section>
+{% endblock %}

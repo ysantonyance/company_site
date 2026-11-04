@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Karina's Empire{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="logo">Company_site</div>
+        <nav class="nav-links">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'news' %}">News</a>
+            <a href="{% url 'management' %}">Management</a>
+            <a href="{% url 'about' %}">About</a>
+            <a href="{% url 'contact-alt' %}">Contact</a>
+        </nav>
+    </header>
+
+    <main class="site-main">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 Karina's 7th Company. All rights reserved (and €4000 ice cream fund open).</p>
+    </footer>
+
+</body>
+</html>
