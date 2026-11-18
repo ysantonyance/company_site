@@ -1,4 +1,6 @@
-from django.urls import path
+from xml.etree.ElementInclude import include
+
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
@@ -8,6 +10,8 @@ urlpatterns = [
     path('about/',         views.about,       name='about'),
     path('contacts/',      views.contacts,    name='contacts'),
     path('contact/',       views.contacts,    name='contact-alt'),
+
+    path('contact/', include('contacts.urls')),
 
     # сatch-all для кожного розділу (найважливіше — порядок!)
     path('news/<path:_>/',      views.news,       name='news-catchall'),
