@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Management — Karina's Empire{% endblock %}
 
 {% block content %}
@@ -7,15 +8,15 @@
     <div class="team-grid">
         <div class="team-member">
             <h3>Босс</h3>
-            <img src="" alt="">
+            <img src="{% static 'img/boss.jpg' %}" alt="Босс">
         </div>
         <div class="team-member">
             <h3>Менеджер</h3>
-            <img src="" alt="">
+            <img src="{% static 'img/manager.jpg' %}" alt="Менеджер">
         </div>
         <div class="team-member">
             <h3>Все остальное</h3>
-            <img src="" alt="">
+            <img src="{% static 'img/workers.jpg' %}" alt="Все остальное">
         </div>
     </div>
 </div>

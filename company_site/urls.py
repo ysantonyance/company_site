@@ -1,6 +1,8 @@
+from email.policy import default
 from xml.etree.ElementInclude import include
 
 from django.urls import path, include
+from django.views import defaults as default_views
 from . import views
 
 urlpatterns = [
@@ -12,6 +14,8 @@ urlpatterns = [
     path('contact/',       views.contacts,    name='contact-alt'),
 
     path('contact/', include('contacts.urls')),
+
+    path('404/', default_views.page_not_found),
 
     # сatch-all для кожного розділу (найважливіше — порядок!)
     path('news/<path:_>/',      views.news,       name='news-catchall'),

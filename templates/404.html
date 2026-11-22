@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}404 — Страница уплыла | Karina's Empire{% endblock %}
+
+{% block content %}
+<div class="content-card contact-card" style="text-align: center;">
+    <div class="hero-badge">Ошибка 404</div>
+    <h1 style="font-size: 4.5rem; margin-bottom: 10px;">404</h1>
+    <h2>Этой страницы не существует</h2>
+    
+    <p>
+        Смотрите внимательнее когда пишите разделы
+    </p>
+    <span class="note">Но вы всегда можете пополнить фонд мороженого на €4000.</span>
+
+    <div class="hero-actions" style="margin-top: 30px;">
+        <a href="{% url 'home' %}" class="btn-primary">Вернуться на главную</a>
+        <a href="{% url 'contacts' %}" class="btn-secondary">Подарить €4000 на мороженое</a>
+    </div>
+</div>
+{% endblock %}
