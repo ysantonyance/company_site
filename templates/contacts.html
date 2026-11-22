@@ -1,8 +1,16 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static custom_filters %}
 
 {% block title %}
   {% if country_info %}{{ country_info.title }}{% else %}Контакты — Karina's Empire{% endif %}
+{% endblock %}
+
+{% block page_badge %}
+<div style="text-align: center; margin-top: 8px;">
+    {% with total_branches=empire_data.branches_list|length %}
+    <span class="news-tag win">Активных филиалов: {{ total_branches }}</span>
+    {% endwith %}
+</div>
 {% endblock %}
 
 {% block content %}
@@ -10,18 +18,22 @@
     {% if country_info %}
         <h2>Связь с императоршей — {{ country_info.city }}</h2>
         <div class="contact-info">
-            <p><strong>Телефон:</strong> {{ country_info.phone }}</p>
+            <p><strong>Телефон:</strong> {{ country_info.phone }} <small>({{ country_info.phone|censor_phone }})</small></p>
             <span class="note">{{ country_info.note }}</span>
 
             {% if country_info.email %}
                 <p><strong>Почта:</strong> {{ country_info.email }}</p>
+            {% else %}
+                <p><strong>Почта:</strong> {{ country_info.email|default:"Для этого филиала почта не заведена" }}</p>
             {% endif %}
         </div>
 
         {% if has_image %}
             <div class="country-image">
-                <img src="{% static country_info.image %}" alt="{{ country_info.city }}">
+                <img src="{% static country_info.image %}" alt="{{ country_info.city }}" style="width: 100%; border-radius: 14px; margin-top: 12px;">
             </div>
+        {% else %}
+            <p><small>Фото для филиала «{{ country_info.city }}» отсутствует.</small></p>
         {% endif %}
 
         <div style="margin-top: 20px;">
@@ -30,21 +42,28 @@
 
     {% else %}
         <h2>Связь с императоршей</h2>
-        <div class="contact-info">
-            <p><strong>Телефон:</strong> +359 87 758 2495</p>
-            <span class="note">Отвечаю через месяц, все таки не один бизнес на моих плечах.</span>
 
-            <p><strong>Почта:</strong> zinovevakarina569@gmail.com</p>
-            <span class="note">Почту я не проверяю если что</span>
+        {% with hq=empire_data.hq_contacts %}
+        <div class="contact-info">
+            <p><strong>Телефон:</strong> {{ hq.phone }} <small>({{ hq.phone|censor_phone }})</small></p>
+            <span class="note">{{ hq.phone_note }}</span>
+
+            <p><strong>Почта:</strong> {{ hq.email }}</p>
+            <span class="note">{{ hq.email_note }}</span>
         </div>
+        {% endwith %}
 
         <div class="sub-links" style="margin-top: 20px;">
-            <p><strong>Региональные филиалы:</strong></p>
-            <div style="display: flex; gap: 10px; margin-top: 10px;">
-                <a href="{% url 'ukraine' %}" class="btn-secondary">Украина</a>
-                <a href="{% url 'bulgaria' %}" class="btn-secondary">Болгария</a>
-                <a href="{% url 'china' %}" class="btn-secondary">Китай</a>
+            {% with branches=empire_data.branches_list %}
+            <p><strong>Региональные филиалы ({{ branches|length }}):</strong></p>
+            <div style="display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;">
+                {% for branch in branches %}
+                    <a href="{% url branch.slug %}" class="btn-secondary">{{ branch.name_ru }}</a>
+                {% empty %}
+                    <span>Филиалов пока нет</span>
+                {% endfor %}
             </div>
+            {% endwith %}
         </div>
     {% endif %}
 </div>

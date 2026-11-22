@@ -10,10 +10,10 @@ urlpatterns = [
     path('news/',          views.news,        name='news'),
     path('management/',    views.management,  name='management'),
     path('about/',         views.about,       name='about'),
-    path('contacts/',      views.contacts,    name='contacts'),
-    path('contact/',       views.contacts,    name='contact-alt'),
 
-    path('contact/', include('contacts.urls')),
+    path('contacts/', include('contacts.urls')),
+
+    path('contact/', include('contacts.urls'), name='contact-alt'),
 
     path('404/', default_views.page_not_found),
 

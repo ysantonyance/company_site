@@ -18,9 +18,17 @@
             <a href="{% url 'news' %}">News</a>
             <a href="{% url 'management' %}">Management</a>
             <a href="{% url 'about' %}">About</a>
-            <a href="{% url 'contact-alt' %}">Contact</a>
+            <a href="{% url 'contacts' %}">Contact</a>
         </nav>
     </header>
+
+    {% if base_banner %}
+    <div style="text-align: center; margin-top: 16px;">
+        <span class="hero-badge">{{ base_banner }}</span>
+    </div>
+    {% endif %}
+
+    {% block page_badge %}{% endblock %}
 
     <main class="site-main">
         {% block content %}
@@ -28,7 +36,7 @@
     </main>
 
     <footer class="site-footer">
-        <p>© 2026 Karina's 7th Company. All rights reserved (and €4000 ice cream fund open).</p>
+        <p>© 2026 Karina's 7th Company. All rights reserved (and {{ footer_fund|default:"€4000 ice cream fund open" }}).</p>
     </footer>
 
 </body>
