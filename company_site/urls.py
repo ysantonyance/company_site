@@ -3,6 +3,8 @@ from xml.etree.ElementInclude import include
 
 from django.urls import path, include
 from django.views import defaults as default_views
+from django.contrib import admin
+from company.views import index
 from . import views
 
 urlpatterns = [
@@ -16,6 +18,8 @@ urlpatterns = [
     path('contact/', include('contacts.urls'), name='contact-alt'),
 
     path('404/', default_views.page_not_found),
+    path('admin/', admin.site.urls),
+    path('company/', index, name='company_panel'),
 
     # сatch-all для кожного розділу (найважливіше — порядок!)
     path('news/<path:_>/',      views.news,       name='news-catchall'),
