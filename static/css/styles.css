@@ -390,6 +390,127 @@ h1 {
     background: var(--bg-cream);
 }
 
+/* Общая ошибка формы (из clean()) */
+.form-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 15px 18px;
+    border-radius: 16px;
+    background: #fdf0eb;
+    color: #8c3f2d;
+    border: 1px solid #ecc0b0;
+    font-size: 0.92rem;
+    font-weight: 500;
+    margin-bottom: 24px;
+    box-shadow: 0 6px 18px rgba(176, 87, 66, 0.08);
+    animation: fadeSlideIn 0.25s ease-out;
+}
+
+.alert-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--accent-peach);
+    color: #8c3f2d;
+    font-weight: 800;
+    font-size: 0.82rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.form-alert p {
+    margin: 0;
+    color: #8c3f2d;
+    font-size: 0.92rem;
+    line-height: 1.45;
+}
+
+/* Группы полей */
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 7px;
+}
+
+.req-mark {
+    color: #b05742;
+    margin-left: 3px;
+}
+
+.checkbox-row {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 10px 14px;
+    background: var(--bg-cream);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    transition: var(--transition);
+}
+
+.checkbox-row:hover {
+    background: #fff;
+    border-color: #cfc6b9;
+}
+
+/* Подсветка поля с ошибкой */
+.form-group.has-error input[type="text"],
+.form-group.has-error input[type="email"],
+.form-group.has-error input[type="tel"],
+.form-group.has-error input[type="number"],
+.form-group.has-error input[type="date"],
+.form-group.has-error select,
+.form-group.has-error textarea {
+    background: #fff9f7;
+    border-color: #dfa393;
+    box-shadow: 0 0 0 4px rgba(247, 214, 200, 0.45);
+}
+
+/* Плашка ошибки под конкретным полем */
+.field-errors {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    animation: fadeSlideIn 0.25s ease-out;
+}
+
+.field-error-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 13px;
+    border-radius: 12px;
+    background: #fdf0eb;
+    border: 1px solid #efd0c5;
+    color: #8c3f2d;
+    font-size: 0.84rem;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @media (max-width: 768px) {
     h1 {
         font-size: 1.95rem;

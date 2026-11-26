@@ -43,12 +43,47 @@
 
                 {% if form.non_field_errors %}
                     <div class="form-alert" role="alert">
-                        {{ form.non_field_errors }}
+                        <span class="alert-icon" aria-hidden="true">!</span>
+                        <div>
+                            {% for error in form.non_field_errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
                     </div>
                 {% endif %}
 
                 <div class="form-body">
-                    {{ form.as_div }}
+                    {% for field in form %}
+                        <div class="form-group {% if field.errors %}has-error{% endif %} {% if field.field.widget.input_type == 'checkbox' %}is-checkbox{% endif %}">
+                            {% if field.field.widget.input_type == 'checkbox' %}
+                                <label class="checkbox-row" for="{{ field.id_for_label }}">
+                                    {{ field }}
+                                    <span>{{ field.label }}</span>
+                                </label>
+                            {% else %}
+                                <label for="{{ field.id_for_label }}">
+                                    {{ field.label }}
+                                    {% if field.field.required %}<span class="req-mark">*</span>{% endif %}
+                                </label>
+                                {{ field }}
+                            {% endif %}
+
+                            {% if field.help_text %}
+                                <span class="helptext">{{ field.help_text }}</span>
+                            {% endif %}
+
+                            {% if field.errors %}
+                                <div class="field-errors" role="alert">
+                                    {% for error in field.errors %}
+                                        <div class="field-error-item">
+                                            <span aria-hidden="true">✦</span>
+                                            <span>{{ error }}</span>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
                 </div>
 
                 <div class="form-actions">
@@ -56,7 +91,7 @@
                         <span>{{ submit_label|default:"Отправить" }}</span>
                         <span aria-hidden="true">♡</span>
                     </button>
-                    <a href="/contact/" class="back-link">← Вернуться</a>
+                    <a href="/" class="back-link">← Вернуться на главную</a>
                 </div>
             </form>
         </div>
