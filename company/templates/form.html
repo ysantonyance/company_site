@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title|default:"Форма связи — Karina's Empire" }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+<header class="site-header">
+    <a href="/" class="logo">Karina's Empire</a>
+    <nav class="nav-links">
+        <a href="/">Главная</a>
+        <a href="{% url 'contacts' %}">Контакты</a>
+        <a href="{% url 'contact_form' %}">Форма</a>
+    </nav>
+</header>
+
+<main class="site-main">
+    <section class="form-page">
+        <div class="form-card">
+            <header class="form-header">
+                <span class="form-pill">✦ Заявка или обращение ✦</span>
+                <h1>{{ title|default:"Форма связи" }}</h1>
+                <p class="form-subtitle">{{ subtitle|default:"Заполните поля ниже, чтобы отправить обращение" }}</p>
+            </header>
+
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert-success">{{ message }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <form method="post" class="company-form" novalidate>
+                {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                    <div class="form-alert" role="alert">
+                        {{ form.non_field_errors }}
+                    </div>
+                {% endif %}
+
+                <div class="form-body">
+                    {{ form.as_div }}
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">
+                        <span>{{ submit_label|default:"Отправить" }}</span>
+                        <span aria-hidden="true">♡</span>
+                    </button>
+                    <a href="/contact/" class="back-link">← Вернуться</a>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    Karina's Empire
+</footer>
+
+</body>
+</html>

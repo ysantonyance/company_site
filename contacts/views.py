@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.contrib import messages
+from django.shortcuts import render, redirect
 from django.views import View
+from company.form import CompanyEntryForm
 
 
 class CountryBranch:
@@ -77,3 +79,29 @@ class ContactsDetailView(View):
             'footer_fund': "€4000 ice cream fund open",
         }
         return render(request, self.template_name, context)
+
+class CompanyFormView(View):
+    template_name = "form.html"
+
+    def get(self, request):
+        return render(request, self.template_name, {
+            "title": "Форма компании",
+            "subtitle": "Заполните поля и выберите нужные разделы.",
+            "submit_label": "Отправить",
+            "form": CompanyEntryForm(),
+        })
+
+    def post(self, request):
+        form = CompanyEntryForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            # Use data["full_name"], data["branch"], data["amount"], etc.
+            messages.success(request, "Данные формы сохранены.")
+            return redirect("contact_form")
+
+        return render(request, self.template_name, {
+            "title": "Форма компании",
+            "subtitle": "Проверьте выделенные поля.",
+            "submit_label": "Отправить",
+            "form": form,
+        })

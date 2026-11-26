@@ -36,8 +36,9 @@
             <p><small>Фото для филиала «{{ country_info.city }}» отсутствует.</small></p>
         {% endif %}
 
-        <div style="margin-top: 20px;">
+        <div style="display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap;">
             <a href="{% url 'contacts' %}" class="btn-secondary">← Назад к общим контактам</a>
+            <a href="{% url 'contact_form' %}" class="btn-primary">Заполнить форму ✦</a>
         </div>
 
     {% else %}
@@ -53,7 +54,11 @@
         </div>
         {% endwith %}
 
-        <div class="sub-links" style="margin-top: 20px;">
+        <div style="margin-top: 20px;">
+            <a href="{% url 'contact_form' %}" class="btn-primary">Заполнить форму ✦</a>
+        </div>
+
+        <div class="sub-links" style="margin-top: 24px;">
             {% with branches=empire_data.branches_list %}
             <p><strong>Региональные филиалы ({{ branches|length }}):</strong></p>
             <div style="display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;">

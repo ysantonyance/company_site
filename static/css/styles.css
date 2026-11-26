@@ -24,9 +24,9 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    line-height: 1.5;
 }
 
-/* Шапка с легким эффектом парения */
 .site-header {
     display: flex;
     justify-content: space-between;
@@ -45,6 +45,7 @@ body {
     font-size: 1.25rem;
     letter-spacing: -0.02em;
     color: var(--text-main);
+    text-decoration: none;
 }
 
 .nav-links {
@@ -81,7 +82,6 @@ body {
     width: 100%;
 }
 
-/* Основной контейнер */
 .site-main {
     flex: 1;
     display: flex;
@@ -90,13 +90,14 @@ body {
     padding: 60px 20px;
 }
 
-/* Главная страница */
+/* Главная страница и общие кнопки */
 .hero-section {
     text-align: center;
     max-width: 750px;
 }
 
-.hero-badge {
+.hero-badge,
+.form-pill {
     display: inline-block;
     padding: 6px 16px;
     background: var(--accent-yellow);
@@ -104,24 +105,24 @@ body {
     font-size: 0.85rem;
     font-weight: 600;
     color: #6a5a2b;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     box-shadow: var(--shadow);
 }
 
 h1 {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     font-weight: 800;
     letter-spacing: -0.03em;
-    margin-bottom: 20px;
+    margin-bottom: 14px;
     line-height: 1.15;
+    color: var(--text-main);
 }
 
-.hero-subtitle {
+.hero-subtitle,
+.form-subtitle {
     color: var(--text-muted);
-    font-size: 1.2rem;
+    font-size: 1.05rem;
     line-height: 1.6;
-    margin-bottom: 40px;
-    font-weight: 400;
 }
 
 .hero-actions {
@@ -131,7 +132,8 @@ h1 {
     flex-wrap: wrap;
 }
 
-.btn-primary, .btn-secondary {
+.btn-primary,
+.btn-secondary {
     padding: 14px 28px;
     border-radius: 14px;
     font-weight: 600;
@@ -161,11 +163,12 @@ h1 {
     background: #c3d6cd;
 }
 
-/* Универсальные карточки для страниц */
-.content-card {
+/* Карточки страниц и контактов */
+.content-card,
+.form-card {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    padding: 50px;
+    padding: 48px;
     border-radius: 24px;
     max-width: 680px;
     width: 100%;
@@ -173,7 +176,8 @@ h1 {
     transition: var(--transition);
 }
 
-.content-card:hover {
+.content-card:hover,
+.form-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 15px 35px rgba(71, 62, 53, 0.08);
 }
@@ -187,11 +191,10 @@ h1 {
 
 .content-card p {
     color: var(--text-muted);
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     line-height: 1.7;
 }
 
-/* Контакты */
 .contact-card .note {
     display: block;
     font-size: 0.9rem;
@@ -200,62 +203,13 @@ h1 {
     margin-bottom: 20px;
 }
 
-/* Менеджмент */
-.team-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.team-member {
-    background: var(--bg-cream);
-    padding: 20px;
-    border-radius: 16px;
-    text-align: center;
-    border: 1px solid var(--border-color);
-    transition: var(--transition);
-}
-
-.team-member:hover {
-    transform: translateY(-3px);
-    background: #fff;
-}
-
-.team-member h3 {
-    font-size: 1rem;
-    font-weight: 600;
-}
-
-/* Новости */
-.news-list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.news-item {
-    background: var(--bg-cream);
-    padding: 18px 22px;
-    border-radius: 16px;
-    border: 1px solid var(--border-color);
-    transition: var(--transition);
-}
-
-.news-item:hover {
-    transform: translateX(4px);
-    background: #fff;
-}
-
 .news-tag {
     display: inline-block;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     font-weight: 700;
-    padding: 3px 10px;
-    border-radius: 6px;
-    margin-bottom: 8px;
-    letter-spacing: 0.05em;
+    padding: 4px 12px;
+    border-radius: 8px;
+    letter-spacing: 0.04em;
     background: #e4dec9;
     color: #55503f;
 }
@@ -270,7 +224,163 @@ h1 {
     color: #2c4238;
 }
 
-/* Футер */
+/* Страница формы */
+.form-page {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.messages {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.alert-success {
+    padding: 12px 16px;
+    border-radius: 14px;
+    background: var(--accent-sage);
+    color: #2c4238;
+    border: 1px solid #c3d6cd;
+    font-size: 0.92rem;
+    font-weight: 500;
+}
+
+.form-alert {
+    padding: 14px 18px;
+    border-radius: 14px;
+    background: var(--accent-peach);
+    color: #8c3f2d;
+    border: 1px solid #efc2af;
+    font-size: 0.92rem;
+    margin-bottom: 20px;
+}
+
+.form-alert ul,
+.errorlist {
+    list-style: none;
+    color: #8c3f2d;
+    font-size: 0.86rem;
+    font-weight: 500;
+    margin-top: 6px;
+}
+
+.form-body > div {
+    margin-bottom: 18px;
+}
+
+.form-body label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 7px;
+}
+
+.form-body input[type="text"],
+.form-body input[type="email"],
+.form-body input[type="tel"],
+.form-body input[type="number"],
+.form-body input[type="date"],
+.form-body input[type="url"],
+.form-body select,
+.form-body textarea {
+    width: 100%;
+    padding: 13px 16px;
+    background: var(--bg-cream);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    color: var(--text-main);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.98rem;
+    transition: var(--transition);
+}
+
+.form-body textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.form-body input:focus,
+.form-body select:focus,
+.form-body textarea:focus {
+    outline: none;
+    background: #fff;
+    border-color: #b8afa3;
+    box-shadow: 0 0 0 4px rgba(247, 214, 200, 0.35);
+}
+
+.form-body input[type="checkbox"],
+.form-body input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--text-main);
+    cursor: pointer;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.helptext {
+    display: block;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-top: 6px;
+}
+
+.form-actions {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px 28px;
+    border-radius: 14px;
+    border: none;
+    background: var(--text-main);
+    color: #fff;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    background: #524e49;
+    box-shadow: 0 15px 35px rgba(71, 62, 53, 0.12);
+}
+
+.back-link {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 8px;
+    border-radius: 12px;
+    transition: var(--transition);
+}
+
+.back-link:hover {
+    color: var(--text-main);
+    background: var(--bg-cream);
+}
+
 .site-footer {
     text-align: center;
     padding: 24px;
@@ -280,37 +390,23 @@ h1 {
     background: var(--bg-cream);
 }
 
-.team-member {
-    min-width: 0;
-    text-align: center;
-}
-
-.team-member img {
-    width: 150px;
-    height: 150px;
-    max-width: 100%;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 50%;
-    margin: 12px auto 0;
-    display: block;
-    border: 2px solid var(--border-color);
-}
-
-/* Мобильная адаптивность */
 @media (max-width: 768px) {
-    .team-grid {
-        grid-template-columns: 1fr;
-    }
     h1 {
-        font-size: 2.5rem;
+        font-size: 1.95rem;
     }
     .site-header {
         padding: 16px 20px;
         flex-direction: column;
         gap: 12px;
     }
-    .content-card {
+    .nav-links {
+        gap: 18px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .content-card,
+    .form-card {
         padding: 30px 20px;
+        border-radius: 20px;
     }
 }
